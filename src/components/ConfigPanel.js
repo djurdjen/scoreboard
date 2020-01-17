@@ -10,6 +10,18 @@ import gear from "../img/gear.svg";
 import "./ConfigPanel.scss";
 
 class ConfigPanel extends Component {
+  constructor() {
+    super();
+    this.resetGame = this.resetGame.bind(this);
+  }
+  resetGame() {
+    const answer = window.confirm("Are you sure you want to reset your game?");
+    if (answer) {
+      this.props.resetGame();
+    } else {
+      return;
+    }
+  }
   render() {
     return (
       <div className="config-panel">
@@ -40,10 +52,7 @@ class ConfigPanel extends Component {
               </div>
             </div>
             <div className="config-panel__option">
-              <button
-                onClick={this.props.resetGame}
-                className="config-panel__reset"
-              >
+              <button onClick={this.resetGame} className="config-panel__reset">
                 Reset game
               </button>
             </div>

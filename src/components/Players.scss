@@ -10,13 +10,29 @@
     justify-content: space-between;
     padding: 12px;
     border-bottom: 1px solid $primary;
+    font-size: 22px;
+    &-text {
+      margin-right: 8px;
+    }
+    .round-number {
+      display: inline-block;
+      margin-left: 8px;
+      transition: 300ms ease-in-out all;
+    }
+    .animate {
+      .round-number {
+        transform: scale(1.6);
+        transition: 400ms ease-in-out all;
+      }
+    }
 
     button {
       @include btn();
+      font-size: 20px;
     }
   }
   &__single {
-    padding: 12px;
+    padding: 12px 24px 12px 12px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid $primary;
@@ -39,12 +55,13 @@
     }
     &-btn {
       display: block;
-      height: 40px;
-      width: 40px;
+      height: 60px;
+      width: 60px;
       position: relative;
       margin-left: 6px;
       border: 0;
       border-radius: 3px;
+      cursor: pointer;
 
       &:after {
         display: block;
@@ -53,7 +70,7 @@
         top: 50%;
         transform: translate(-50%, -50%);
         color: white;
-        font-size: 28px;
+        font-size: 38px;
 
         line-height: 0;
       }
@@ -78,6 +95,8 @@
     padding: 20px 12px;
     display: flex;
     flex-direction: column;
+    font-size: 20px;
+    font-weight: bold;
 
     &-wrapper {
       display: flex;

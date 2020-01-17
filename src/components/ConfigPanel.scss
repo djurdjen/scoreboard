@@ -60,5 +60,6 @@
   }
   &__reset {
     @include btn();
+    font-size: 22px;
   }
 }

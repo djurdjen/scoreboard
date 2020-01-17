@@ -38,7 +38,7 @@ export default function(state = initialState, action) {
     case SET_GAME_NAME:
       return { ...state, name: action.payload };
     case RESET_GAME:
-      return { ...initialState };
+      return { ...initialState, id: uuid() };
     default:
       return state;
   }

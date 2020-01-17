@@ -3,7 +3,8 @@ import {
   INCREMENT_PLAYER_SCORE,
   DECREMENT_PLAYER_SCORE,
   NEXT_ROUND,
-  RESET_GAME
+  RESET_GAME,
+  TOGGLE_SETTINGS
 } from "./types";
 
 export const addPlayer = player => async dispatch => {
@@ -33,5 +34,6 @@ export const nextRound = round => (dispatch, getState) => {
 
 export const resetGame = () => dispatch => {
   dispatch({ type: RESET_GAME });
+  dispatch({ type: TOGGLE_SETTINGS });
   localStorage.removeItem("currentGame");
 };

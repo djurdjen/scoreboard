@@ -16,6 +16,7 @@ class Players extends Component {
       newPlayerInput: {
         name: ""
       },
+      roundAnimation: false,
       roundHistory: this.props.history[this.props.history.length - 1] || []
     };
     this.setValue = this.setValue.bind(this);
@@ -54,6 +55,19 @@ class Players extends Component {
     });
   }
 
+  componentWillReceiveProps(props) {
+    // check if game was reset, if so, reset the round history
+    if (this.props.gameId !== props.gameId) {
+      this.setState({ roundHistory: [] });
+    }
+    if (props.round === this.props.round + 1) {
+      this.setState({ roundAnimation: true });
+      setTimeout(() => {
+        this.setState({ roundAnimation: false });
+      }, 400);
+    }
+  }
+
   allowedNewRound() {
     const lastRound = this.props.history[this.props.round - 2];
     console.log(JSON.stringify(this.state.roundHistory));
@@ -81,12 +95,17 @@ class Players extends Component {
   }
 
   render() {
-    // console.log(this.allowedNewRound());
     return (
       <div className="players">
         <div className="players__round">
           <button onClick={this.startNewRound}>New round</button>
-          <strong>Round {this.props.round}</strong>
+          <strong
+            className={`players__round-text ${
+              this.state.roundAnimation ? "animate" : ""
+            }`}
+          >
+            Round <span className="round-number">{this.props.round}</span>
+          </strong>
         </div>
         {this.props.players.map((player, key) => (
           <div key={player.id} className="players__single">
@@ -95,14 +114,14 @@ class Players extends Component {
               <Score score={player.score} />
             </div>
             <div className="players__single-interaction">
-              <button
+              <div
                 className="players__single-btn players__single-btn--decrement"
-                onClick={() => this.changeScore(player, "decrement")}
-              ></button>
-              <button
+                onTouchStart={() => this.changeScore(player, "decrement")}
+              ></div>
+              <div
                 className="players__single-btn players__single-btn--increment"
-                onClick={() => this.changeScore(player, "increment")}
-              ></button>
+                onTouchStart={() => this.changeScore(player, "increment")}
+              ></div>
             </div>
           </div>
         ))}
@@ -127,6 +146,7 @@ class Players extends Component {
 const mapStateToProps = state => ({
   players: state.game.players,
   round: state.game.round,
+  gameId: state.game.id,
   history: state.game.history
 });
 export default connect(mapStateToProps, {
