@@ -125,7 +125,7 @@ class Players extends Component {
             </div>
           </div>
         ))}
-        <form onSubmit={this.onFormSubmit} className="players__new">
+        <form action="#" onSubmit={this.onFormSubmit} className="players__new">
           New player:
           <div className="players__new-wrapper">
             <label>
