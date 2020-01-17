@@ -2,11 +2,10 @@
   "name": "Scoreboard",
   "short_name": "Scoreboard",
   "theme_color": "#9595cf",
-  "background_color": "#ffffff",
+  "background_color": "#9595cf",
   "display": "fullscreen",
   "orientation": "portrait",
-  "Scope": "/",
-  "start_url": "/",
+  "start_url": ".",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
@@ -36,6 +35,11 @@
     {
       "src": "images/icons/icon-384x384.png",
       "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/icon-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
