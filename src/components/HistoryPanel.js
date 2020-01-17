@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { toggleHistory } from "../store/actions/configActions";
 
 // load the images fro pwa cache
-import historyWhite from "../img/history-white.svg";
-import history from "../img/history.svg";
+import History from "../icons/history";
+
 import "./HistoryPanel.scss";
 
 class ConfigPanel extends Component {
@@ -43,13 +43,10 @@ class ConfigPanel extends Component {
           className={`history-panel__toggle ${
             this.props.historyToggled ? "history-panel__toggle--active" : ""
           }`}
-          style={{
-            backgroundImage: `url(${
-              this.props.historyToggled ? history : historyWhite
-            })`
-          }}
           onClick={this.props.toggleHistory}
-        ></button>
+        >
+          <History color={this.props.historyToggled ? "#9595cf" : "#ffffff"} />
+        </button>
         <div
           className={`history-panel__wrapper ${
             this.props.historyToggled ? "history-panel__wrapper--active" : ""

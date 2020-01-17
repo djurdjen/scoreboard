@@ -33,11 +33,15 @@
     height: 49px;
     width: 50px;
     cursor: pointer;
-    background: {
-      size: 26px 26px;
-      position: 50% 50%;
-      repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 26px;
+      height: 26px;
     }
+
     &--active {
       background-color: white;
     }

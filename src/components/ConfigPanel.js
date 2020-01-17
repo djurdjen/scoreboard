@@ -4,9 +4,7 @@ import { setTally, toggleSettings } from "../store/actions/configActions";
 import { resetGame } from "../store/actions/gameActions";
 import Toggle from "./Toggle";
 
-// load the images fro pwa cache
-import gearWhite from "../img/gear-white.svg";
-import gear from "../img/gear.svg";
+import Gear from "../icons/gear";
 import "./ConfigPanel.scss";
 
 class ConfigPanel extends Component {
@@ -29,13 +27,10 @@ class ConfigPanel extends Component {
           className={`config-panel__toggle ${
             this.props.settingsToggled ? "config-panel__toggle--active" : ""
           }`}
-          style={{
-            backgroundImage: `url(${
-              this.props.settingsToggled ? gear : gearWhite
-            })`
-          }}
           onClick={this.props.toggleSettings}
-        ></button>
+        >
+          <Gear color={this.props.settingsToggled ? "#9595cf" : "#ffffff"} />
+        </button>
         <div
           className={`config-panel__wrapper ${
             this.props.settingsToggled ? "config-panel__wrapper--active" : ""
