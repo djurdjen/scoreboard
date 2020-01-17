@@ -1,0 +1,65 @@
+@import "../variables.scss";
+
+.players {
+  display: flex;
+  flex-direction: column;
+  &__single {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $primary;
+    &-data {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      .player-name {
+        font-size: 24px;
+        margin-bottom: 6px;
+      }
+      .player-score {
+        font-size: 18px;
+      }
+    }
+    &-interaction {
+      display: flex;
+      align-items: center;
+    }
+    &-btn {
+      display: block;
+      height: 40px;
+      width: 40px;
+      position: relative;
+      margin-left: 6px;
+      border: 0;
+      border-radius: 3px;
+
+      &:after {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: calc(50% - 2px);
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 28px;
+
+        line-height: 0;
+      }
+
+      &--increment {
+        background-color: $primary;
+        &:after {
+          content: "+";
+        }
+      }
+      &--decrement {
+        background-color: white;
+        border: 1px solid $primary;
+        &:after {
+          color: $primary;
+          content: "-";
+        }
+      }
+    }
+  }
+}

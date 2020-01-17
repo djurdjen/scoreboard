@@ -1,0 +1,53 @@
+@import "../variables.scss";
+
+.config-panel {
+  display: flex;
+
+  &__wrapper {
+    position: absolute;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    z-index: 10;
+    top: 50px;
+    transition: 300ms ease-in-out all;
+
+    &--active {
+      height: 300px;
+      transition: 300ms ease-in-out all;
+    }
+  }
+  &__container {
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid $primary;
+    border-top: 0;
+    background: white;
+  }
+  &__toggle {
+    background-color: white;
+    border: 0;
+    margin-left: auto;
+    outline: none;
+    height: 49px;
+    width: 50px;
+    cursor: pointer;
+    background: {
+      size: 26px 26px;
+      position: 50% 50%;
+      repeat: no-repeat;
+    }
+    &--active {
+      background-color: $primary;
+    }
+  }
+  &__option-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .toggle-label {
+      margin-right: 12px;
+    }
+  }
+}

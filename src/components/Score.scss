@@ -1,0 +1,36 @@
+.score {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__tally {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    &-batch {
+      height: 30px;
+      display: flex;
+      position: relative;
+      margin-right: 20px;
+      margin-top: 8px;
+
+      .tally {
+        display: block;
+        width: 3px;
+        height: 28px;
+        background-color: black;
+        margin-right: 6px;
+        &:nth-child(4) {
+          margin-right: 0;
+        }
+        &:nth-child(5) {
+          position: absolute;
+          left: 50%;
+          top: calc(50% - 1px);
+          height: 45px;
+          transform-origin: top left;
+          transform: rotate(70deg) translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}

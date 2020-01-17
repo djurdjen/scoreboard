@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  max-width: 1000px;
+
+  &__header {
+    height: 50px;
+    border-bottom: 1px solid #9595cf;
+    position: relative;
+  }
+}

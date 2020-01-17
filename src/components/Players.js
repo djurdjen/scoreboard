@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addPlayer } from "../store/actions/gameActions";
+import Score from "./Score.js";
+import {
+  addPlayer,
+  incrementPlayerScore,
+  decrementPlayerScore
+} from "../store/actions/gameActions";
+import "./Players.scss";
 
 class Players extends Component {
   constructor(props) {
@@ -36,12 +42,26 @@ class Players extends Component {
     this.props.addPlayer(this.state.newPlayerInput);
     this.setState({ newPlayerInput: { name: "" } });
   }
+
   render() {
     return (
       <div className="players">
         {this.props.players.map((player, key) => (
-          <div>
-            <strong>{player.name}</strong>
+          <div key={player.id} className="players__single">
+            <div className="players__single-data">
+              <strong className="player-name">{player.name}</strong>
+              <Score score={player.score} />
+            </div>
+            <div className="players__single-interaction">
+              <button
+                className="players__single-btn players__single-btn--decrement"
+                onClick={() => this.props.decrementPlayerScore(player.id)}
+              ></button>
+              <button
+                className="players__single-btn players__single-btn--increment"
+                onClick={() => this.props.incrementPlayerScore(player.id)}
+              ></button>
+            </div>
           </div>
         ))}
         <form onSubmit={this.onFormSubmit}>
@@ -63,4 +83,8 @@ class Players extends Component {
 const mapStateToProps = state => ({
   players: state.game.players
 });
-export default connect(mapStateToProps, { addPlayer })(Players);
+export default connect(mapStateToProps, {
+  addPlayer,
+  incrementPlayerScore,
+  decrementPlayerScore
+})(Players);
