@@ -16,12 +16,13 @@ class Players extends Component {
       newPlayerInput: {
         name: ""
       },
-      roundHistory: {}
+      roundHistory: this.props.history[this.props.history.length - 1] || []
     };
     this.setValue = this.setValue.bind(this);
     this.changeScore = this.changeScore.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.startNewRound = this.startNewRound.bind(this);
+    this.allowedNewRound = this.allowedNewRound.bind(this);
   }
   setValue(e) {
     this.setState({
@@ -53,6 +54,15 @@ class Players extends Component {
     });
   }
 
+  allowedNewRound() {
+    const lastRound = this.props.history[this.props.round - 2];
+    console.log(JSON.stringify(this.state.roundHistory));
+    if (JSON.stringify(this.state.roundHistory) === JSON.stringify(lastRound)) {
+      return false;
+    }
+    return true;
+  }
+
   changeScore(player, type = "increment") {
     // change score in store
     this.props[
@@ -71,6 +81,7 @@ class Players extends Component {
   }
 
   render() {
+    // console.log(this.allowedNewRound());
     return (
       <div className="players">
         <div className="players__round">
@@ -115,7 +126,8 @@ class Players extends Component {
 }
 const mapStateToProps = state => ({
   players: state.game.players,
-  round: state.game.round
+  round: state.game.round,
+  history: state.game.history
 });
 export default connect(mapStateToProps, {
   addPlayer,

@@ -1,29 +1,32 @@
 @import "../variables.scss";
 @import "../mixins.scss";
 
-.config-panel {
+.history-panel {
+  display: flex;
+  background-color: $primary;
+
   &__wrapper {
     position: absolute;
     height: 0;
     overflow: hidden;
     width: 100%;
+    left: 0;
     z-index: 10;
     top: 50px;
-    left: 0;
     transition: 300ms ease-in-out all;
+    background: white;
 
     &--active {
       height: calc(100vh - 50px);
       transition: 300ms ease-in-out all;
+      overflow: scroll;
     }
   }
   &__container {
     padding: 20px;
     height: 100%;
     width: 100%;
-    border-bottom: 1px solid $primary;
     border-top: 0;
-    background: white;
   }
   &__toggle {
     background-color: $primary;
@@ -42,23 +45,38 @@
       background-color: white;
     }
   }
-  &__option {
-    padding: 20px 0;
+  &__entry {
+    padding: 12px 0;
     border-bottom: 1px solid $primary;
+    &-data {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &-player {
+      margin-right: 20px;
 
-    &:last-child {
-      border: 0;
+      .score-difference {
+        display: inline-block;
+        margin-left: 6px;
+        margin-top: 10px;
+
+        &.negative {
+          color: red;
+        }
+        &.positive {
+          color: green;
+        }
+        &.neutral {
+          color: blue;
+        }
+      }
     }
-  }
-  &__option-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .toggle-label {
-      margin-right: 12px;
+    &-round {
+      font-size: 18px;
+      display: block;
+      font-weight: bold;
+      color: $primary;
+      text-decoration: underline;
     }
-  }
-  &__reset {
-    @include btn();
   }
 }

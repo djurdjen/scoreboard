@@ -26,10 +26,12 @@ export const decrementPlayerScore = id => (dispatch, getState) => {
   dispatch({ type: DECREMENT_PLAYER_SCORE, payload: players });
 };
 
-export const nextRound = round => dispatch => {
+export const nextRound = round => (dispatch, getState) => {
   dispatch({ type: NEXT_ROUND, payload: round });
+  localStorage.setItem("currentGame", JSON.stringify(getState().game));
 };
 
 export const resetGame = () => dispatch => {
   dispatch({ type: RESET_GAME });
+  localStorage.removeItem("currentGame");
 };

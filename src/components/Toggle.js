@@ -16,7 +16,6 @@ class Toggle extends Component {
     this.props.change(!this.state.isChecked);
   }
   render() {
-    console.log(this.props.isChecked);
     return (
       <label className="switch">
         <input
