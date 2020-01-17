@@ -116,11 +116,11 @@ class Players extends Component {
             <div className="players__single-interaction">
               <div
                 className="players__single-btn players__single-btn--decrement"
-                onTouchStart={() => this.changeScore(player, "decrement")}
+                onClick={() => this.changeScore(player, "decrement")}
               ></div>
               <div
                 className="players__single-btn players__single-btn--increment"
-                onTouchStart={() => this.changeScore(player, "increment")}
+                onClick={() => this.changeScore(player, "increment")}
               ></div>
             </div>
           </div>
