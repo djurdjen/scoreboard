@@ -1,7 +1,9 @@
 import {
   ADD_PLAYER,
   INCREMENT_PLAYER_SCORE,
-  DECREMENT_PLAYER_SCORE
+  DECREMENT_PLAYER_SCORE,
+  NEXT_ROUND,
+  RESET_GAME
 } from "./types";
 
 export const addPlayer = player => async dispatch => {
@@ -22,4 +24,12 @@ export const decrementPlayerScore = id => (dispatch, getState) => {
   const single = players.find(p => p.id === id);
   single.score -= 1;
   dispatch({ type: DECREMENT_PLAYER_SCORE, payload: players });
+};
+
+export const nextRound = round => dispatch => {
+  dispatch({ type: NEXT_ROUND, payload: round });
+};
+
+export const resetGame = () => dispatch => {
+  dispatch({ type: RESET_GAME });
 };

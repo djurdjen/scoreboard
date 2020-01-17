@@ -1,8 +1,20 @@
 @import "../variables.scss";
+@import "../mixins.scss";
 
 .players {
   display: flex;
   flex-direction: column;
+  &__round {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid $primary;
+
+    button {
+      @include btn();
+    }
+  }
   &__single {
     padding: 12px;
     display: flex;
@@ -38,7 +50,7 @@
         display: block;
         position: absolute;
         left: 50%;
-        top: calc(50% - 2px);
+        top: 50%;
         transform: translate(-50%, -50%);
         color: white;
         font-size: 28px;
@@ -59,6 +71,34 @@
           color: $primary;
           content: "-";
         }
+      }
+    }
+  }
+  &__new {
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      margin-top: 12px;
+
+      label {
+        display: block;
+        flex-grow: 1;
+        input {
+          width: 100%;
+          padding: 8px 10px;
+          font-size: 16px;
+          border: 1px solid lightgrey;
+          border-radius: 5px;
+        }
+      }
+      button {
+        @include btn();
+        padding: 10px 20px;
+        margin-left: 12px;
       }
     }
   }

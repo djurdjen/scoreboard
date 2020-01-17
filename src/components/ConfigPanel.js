@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setTally } from "../store/actions/configActions";
+import { resetGame } from "../store/actions/gameActions";
 import Toggle from "./Toggle";
 
 // load the images fro pwa cache
@@ -29,7 +30,7 @@ class ConfigPanel extends Component {
           }`}
           style={{
             backgroundImage: `url(${
-              this.state.pannelActive ? gearWhite : gear
+              this.state.pannelActive ? gear : gearWhite
             })`
           }}
           onClick={this.toggleConfigPanel}
@@ -47,6 +48,12 @@ class ConfigPanel extends Component {
                 change={this.props.setTally}
               ></Toggle>
             </div>
+            <button
+              onClick={this.props.resetGame}
+              className="config-panel__reset"
+            >
+              Reset game
+            </button>
           </div>
         </div>
       </div>
@@ -56,4 +63,4 @@ class ConfigPanel extends Component {
 const mapStateToProps = state => ({
   tally: state.config.tally
 });
-export default connect(mapStateToProps, { setTally })(ConfigPanel);
+export default connect(mapStateToProps, { setTally, resetGame })(ConfigPanel);

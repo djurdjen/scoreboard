@@ -2,6 +2,7 @@
 
 .config-panel {
   display: flex;
+  background-color: $primary;
 
   &__wrapper {
     position: absolute;
@@ -21,12 +22,12 @@
     padding: 20px;
     height: 100%;
     width: 100%;
-    border: 1px solid $primary;
+    border-bottom: 1px solid $primary;
     border-top: 0;
     background: white;
   }
   &__toggle {
-    background-color: white;
+    background-color: $primary;
     border: 0;
     margin-left: auto;
     outline: none;
@@ -39,7 +40,7 @@
       repeat: no-repeat;
     }
     &--active {
-      background-color: $primary;
+      background-color: white;
     }
   }
   &__option-toggle {
