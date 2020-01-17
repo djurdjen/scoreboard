@@ -1,11 +1,10 @@
 {
   "name": "Scoreboard",
   "short_name": "Scoreboard",
+  "start_url": ".",
+  "display": "standalone",
   "theme_color": "#9595cf",
   "background_color": "#9595cf",
-  "display": "fullscreen",
-  "orientation": "portrait",
-  "start_url": ".",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
@@ -33,6 +32,11 @@
       "type": "image/png"
     },
     {
+      "src": "images/icons/icon-152x152.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
       "src": "images/icons/icon-384x384.png",
       "sizes": "384x384",
       "type": "image/png"
@@ -42,6 +46,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "splash_pages": null
+  ]
 }
