@@ -14,6 +14,7 @@
     z-index: 10;
     top: 49px;
     transition: 300ms ease-in-out all;
+    border-bottom: 1px solid $primary;
     background: white;
 
     &--active {

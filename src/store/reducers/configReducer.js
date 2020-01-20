@@ -2,7 +2,8 @@ import {
   SET_TALLY,
   SET_EDITING_MODE,
   TOGGLE_HISTORY,
-  TOGGLE_SETTINGS
+  TOGGLE_SETTINGS,
+  TOGGLE_ALL_FALSE
 } from "../actions/types";
 
 const initialState = {
@@ -26,6 +27,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         settingsToggled: !state.settingsToggled,
+        historyToggled: false
+      };
+    case TOGGLE_ALL_FALSE:
+      return {
+        ...state,
+        settingsToggled: false,
         historyToggled: false
       };
     case SET_EDITING_MODE:
