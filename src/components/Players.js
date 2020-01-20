@@ -97,16 +97,20 @@ class Players extends Component {
   render() {
     return (
       <div className="players">
-        <div className="players__round">
-          <button onClick={this.startNewRound}>New round</button>
-          <strong
-            className={`players__round-text ${
-              this.state.roundAnimation ? "animate" : ""
-            }`}
-          >
-            Round <span className="round-number">{this.props.round}</span>
-          </strong>
-        </div>
+        {this.props.players.length ? (
+          <div className="players__round">
+            <button onClick={this.startNewRound}>New round</button>
+            <strong
+              className={`players__round-text ${
+                this.state.roundAnimation ? "animate" : ""
+              }`}
+            >
+              Round <span className="round-number">{this.props.round}</span>
+            </strong>
+          </div>
+        ) : (
+          ""
+        )}
         {this.props.players.map((player, key) => (
           <div key={player.id} className="players__single">
             <div className="players__single-data">
@@ -126,7 +130,7 @@ class Players extends Component {
           </div>
         ))}
         <form action="#" onSubmit={this.onFormSubmit} className="players__new">
-          New player:
+          Add new player:
           <div className="players__new-wrapper">
             <label>
               <input

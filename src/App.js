@@ -11,6 +11,7 @@ function App() {
     <Provider store={store}>
       <div className="app">
         <header className="app__header">
+          <strong class="app__header-name">Scoreboard</strong>
           <ConfigPanel />
           <HistoryPanel />
         </header>

@@ -53,6 +53,7 @@ class ConfigPanel extends Component {
           }`}
         >
           <div className="history-panel__container">
+            <h1>Score history</h1>
             {this.mapHistory().map((entry, key) => (
               <div className="history-panel__entry" key={key}>
                 <span className="history-panel__entry-round">

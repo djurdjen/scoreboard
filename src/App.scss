@@ -11,12 +11,28 @@ html {
 
 .app {
   max-width: 1000px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
 
   &__header {
     height: 50px;
     position: relative;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     background-color: $primary;
+
+    &-name {
+      color: white;
+      margin-right: auto;
+      margin-left: 20px;
+      font-size: 20px;
+      font-weight: 300;
+    }
   }
 }
