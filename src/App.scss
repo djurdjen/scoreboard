@@ -20,7 +20,7 @@ html {
   flex-direction: column;
 
   &__header {
-    height: 50px;
+    min-height: 50px;
     position: relative;
     display: flex;
     justify-content: flex-end;
