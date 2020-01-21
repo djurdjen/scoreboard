@@ -23,7 +23,7 @@ class Player extends Component {
     this.setState({ editing: id, editingValue: this.props.data.name });
     setTimeout(() => {
       this.inputRef.current.querySelector("input").focus();
-    }, 200);
+    }, 500);
   }
   setEditingValue(e) {
     this.setState({ editingValue: e.target.value });
