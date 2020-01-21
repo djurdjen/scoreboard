@@ -5,7 +5,7 @@ class History extends Component {
     return (
       <svg
         fill={this.props.color}
-        viewBox="0 0 512 512"
+        viewBox="0 0 600 512"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d="m275.531 172.228-.05 120.493c0 4.575 1.816 8.948 5.046 12.177l86.198 86.181 24.354-24.354-81.153-81.136.05-113.361z" />

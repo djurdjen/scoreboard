@@ -29,7 +29,7 @@ class ConfigPanel extends Component {
           }`}
           onClick={this.props.toggleSettings}
         >
-          <Gear color={this.props.settingsToggled ? "#9595cf" : "#ffffff"} />
+          <Gear color={this.props.settingsToggled ? "#4b4ba7" : "#ffffff"} />
         </button>
         <div
           className={`config-panel__wrapper ${
@@ -37,6 +37,7 @@ class ConfigPanel extends Component {
           }`}
         >
           <div className="config-panel__container">
+            <h1>Settings</h1>
             <div className="config-panel__option">
               <div className="config-panel__option-toggle">
                 <span className="toggle-label">Use tally scores</span>

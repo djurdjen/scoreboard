@@ -24,10 +24,10 @@
     "sass-loader": "^8.0.2"
   },
   "scripts": {
-    "dev": "PORT=8080 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "PORT=8080 react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
     "start": "npx nodemon ./bin/www localhost 3000"
   },
   "eslintConfig": {

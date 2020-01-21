@@ -22,7 +22,14 @@ class ConfigPanel extends Component {
           return !isNaN(previous) ? val - previous : val;
         })();
 
-        return { name: key, score: val, difference };
+        return {
+          name: this.props.players.find(p => {
+            return p.id === key;
+          }).name,
+          score: val,
+          difference,
+          id: key
+        };
       });
     });
   }
@@ -45,7 +52,7 @@ class ConfigPanel extends Component {
           }`}
           onClick={this.props.toggleHistory}
         >
-          <History color={this.props.historyToggled ? "#9595cf" : "#ffffff"} />
+          <History color={this.props.historyToggled ? "#4b4ba7" : "#ffffff"} />
         </button>
         <div
           className={`history-panel__wrapper ${
@@ -53,7 +60,7 @@ class ConfigPanel extends Component {
           }`}
         >
           <div className="history-panel__container">
-            <h1>Score history</h1>
+            <h1>History</h1>
             {this.mapHistory().map((entry, key) => (
               <div className="history-panel__entry" key={key}>
                 <span className="history-panel__entry-round">
@@ -88,6 +95,7 @@ class ConfigPanel extends Component {
 }
 const mapStateToProps = state => ({
   historyToggled: state.config.historyToggled,
-  history: state.game.history
+  history: state.game.history,
+  players: state.game.players
 });
 export default connect(mapStateToProps, { toggleHistory })(ConfigPanel);

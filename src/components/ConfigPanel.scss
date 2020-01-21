@@ -11,19 +11,26 @@
     top: 49px;
     left: 0;
     transition: 300ms ease-in-out all;
-    border-bottom: 1px solid $primary;
 
     &--active {
       height: calc(100vh - 50px);
       transition: 300ms ease-in-out all;
+      border-bottom: 1px solid $primary;
     }
   }
   &__container {
-    padding: 20px;
+    padding: 12px;
     height: 100%;
     width: 100%;
     border-top: 0;
     background: white;
+
+    h1 {
+      margin-top: 12px;
+      margin-bottom: 0;
+      font-size: 24px;
+      font-weight: 800;
+    }
   }
   &__toggle {
     background-color: $primary;

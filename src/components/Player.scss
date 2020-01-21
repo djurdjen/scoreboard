@@ -1,0 +1,88 @@
+@import "../variables.scss";
+@import "../mixins.scss";
+
+.player {
+  padding: 12px 24px 12px 12px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+  min-height: 110px;
+  &__data {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  &__name,
+  &__edit-input {
+    font-size: 24px;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+
+  &__edit-input {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    display: block;
+    width: 100%;
+  }
+  &__edit {
+    display: inline-block;
+    cursor: pointer;
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-left: 12px;
+    }
+  }
+  &__score {
+    font-size: 18px;
+  }
+  &__delete {
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  &__interaction {
+    display: flex;
+    align-items: center;
+  }
+  &__btn {
+    display: block;
+    height: 60px;
+    width: 60px;
+    position: relative;
+    margin-left: 6px;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:after {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 38px;
+
+      line-height: 0;
+    }
+
+    &--increment {
+      background-color: $primary;
+      &:after {
+        content: "+";
+      }
+    }
+    &--decrement {
+      background-color: white;
+      border: 1px solid $primary;
+      &:after {
+        color: $primary;
+        content: "-";
+      }
+    }
+  }
+}

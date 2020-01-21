@@ -4,7 +4,7 @@ import middleware from "./middleware";
 
 const savedState = JSON.parse(localStorage.getItem("currentGame"));
 let middlwareComposition = null;
-if (process.env.NODE_ENV !== "development") {
+if (process.env.NODE_ENV === "development") {
   middlwareComposition = compose(
     applyMiddleware(...middleware),
 

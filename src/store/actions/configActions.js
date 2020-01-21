@@ -2,7 +2,8 @@ import {
   SET_TALLY,
   SET_EDITING_MODE,
   TOGGLE_SETTINGS,
-  TOGGLE_HISTORY
+  TOGGLE_HISTORY,
+  TOGGLE_DELETE_STATE
 } from "./types";
 
 export const setTally = () => async (dispatch, getState) => {
@@ -16,4 +17,7 @@ export const toggleSettings = () => async dispatch => {
 };
 export const toggleHistory = () => async dispatch => {
   dispatch({ type: TOGGLE_HISTORY });
+};
+export const toggleDeleteState = () => async dispatch => {
+  dispatch({ type: TOGGLE_DELETE_STATE });
 };

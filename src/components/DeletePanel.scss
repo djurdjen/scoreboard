@@ -1,0 +1,15 @@
+.delete-panel {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--active {
+    background-color: white;
+  }
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}

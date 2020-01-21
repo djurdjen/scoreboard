@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Score from "./Score.js";
+import Player from "./Player.js";
 import {
   addPlayer,
   incrementPlayerScore,
   decrementPlayerScore,
-  nextRound
+  nextRound,
+  changePlayerName,
+  deletePlayer
 } from "../store/actions/gameActions";
 import "./Players.scss";
 
@@ -17,13 +19,14 @@ class Players extends Component {
         name: ""
       },
       roundAnimation: false,
-      roundHistory: this.props.history[this.props.history.length - 1] || []
+      roundHistory: this.props.history[this.props.history.length - 1] || {},
+      editing: "",
+      editingValue: ""
     };
     this.setValue = this.setValue.bind(this);
     this.changeScore = this.changeScore.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.startNewRound = this.startNewRound.bind(this);
-    this.allowedNewRound = this.allowedNewRound.bind(this);
   }
   setValue(e) {
     this.setState({
@@ -46,19 +49,23 @@ class Players extends Component {
       return;
     }
     this.props.addPlayer(this.state.newPlayerInput);
-    this.setState({
-      newPlayerInput: { name: "" },
-      roundHistory: {
-        ...this.state.roundHistory,
-        [this.state.newPlayerInput.name]: 0
-      }
-    });
+    this.setState({ newPlayerInput: { name: "" } });
   }
 
   componentWillReceiveProps(props) {
+    if (
+      props.players.length &&
+      props.players.length !== this.props.players.length
+    ) {
+      const newHistory = {};
+      props.players.forEach(p => {
+        newHistory[p.id] = p.score;
+      });
+      this.setState({ roundHistory: newHistory });
+    }
     // check if game was reset, if so, reset the round history
     if (this.props.gameId !== props.gameId) {
-      this.setState({ roundHistory: [] });
+      this.setState({ roundHistory: {} });
     }
     if (props.round === this.props.round + 1) {
       this.setState({ roundAnimation: true });
@@ -68,16 +75,8 @@ class Players extends Component {
     }
   }
 
-  allowedNewRound() {
-    const lastRound = this.props.history[this.props.round - 2];
-    console.log(JSON.stringify(this.state.roundHistory));
-    if (JSON.stringify(this.state.roundHistory) === JSON.stringify(lastRound)) {
-      return false;
-    }
-    return true;
-  }
-
-  changeScore(player, type = "increment") {
+  changeScore(id, type = "increment") {
+    const player = this.props.players.find(p => p.id === id);
     // change score in store
     this.props[
       type === "increment" ? "incrementPlayerScore" : "decrementPlayerScore"
@@ -85,11 +84,12 @@ class Players extends Component {
 
     // change score in history settings, create a clean copy with JSON.parse and JSON stringify
     const copy = JSON.parse(JSON.stringify(this.state.roundHistory));
-    type === "increment" ? copy[player.name]++ : copy[player.name]--;
+    type === "increment" ? copy[player.id]++ : copy[player.id]--;
     this.setState({
       roundHistory: copy
     });
   }
+
   startNewRound() {
     this.props.nextRound(this.state.roundHistory);
   }
@@ -112,22 +112,14 @@ class Players extends Component {
           ""
         )}
         {this.props.players.map((player, key) => (
-          <div key={player.id} className="players__single">
-            <div className="players__single-data">
-              <strong className="player-name">{player.name}</strong>
-              <Score score={player.score} />
-            </div>
-            <div className="players__single-interaction">
-              <div
-                className="players__single-btn players__single-btn--decrement"
-                onClick={() => this.changeScore(player, "decrement")}
-              ></div>
-              <div
-                className="players__single-btn players__single-btn--increment"
-                onClick={() => this.changeScore(player, "increment")}
-              ></div>
-            </div>
-          </div>
+          <Player
+            key={player.id}
+            data={player}
+            changeScore={this.changeScore}
+            changeName={this.props.changePlayerName}
+            removePlayer={this.props.deletePlayer}
+            deleteState={this.props.deleteState}
+          />
         ))}
         <form action="#" onSubmit={this.onFormSubmit} className="players__new">
           Add new player:
@@ -151,11 +143,14 @@ const mapStateToProps = state => ({
   players: state.game.players,
   round: state.game.round,
   gameId: state.game.id,
-  history: state.game.history
+  history: state.game.history,
+  deleteState: state.config.deleteState
 });
 export default connect(mapStateToProps, {
   addPlayer,
   incrementPlayerScore,
   decrementPlayerScore,
-  nextRound
+  nextRound,
+  changePlayerName,
+  deletePlayer
 })(Players);

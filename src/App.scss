@@ -5,6 +5,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
 html {
   touch-action: manipulation;
 }
@@ -33,6 +38,14 @@ html {
       margin-left: 20px;
       font-size: 20px;
       font-weight: 300;
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__offline {
+    svg {
+      width: 26px;
+      margin-right: 12px;
     }
   }
 }
