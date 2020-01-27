@@ -14,7 +14,6 @@ class Player extends Component {
     this.setEditing = this.setEditing.bind(this);
     this.setEditingValue = this.setEditingValue.bind(this);
     this.changeName = this.changeName.bind(this);
-    this.unFocus = this.unFocus.bind(this);
     this.removePlayer = this.removePlayer.bind(this);
     this.inputRef = createRef();
   }
@@ -28,15 +27,14 @@ class Player extends Component {
   setEditingValue(e) {
     this.setState({ editingValue: e.target.value });
   }
-  changeName(e) {
-    e.preventDefault();
+  changeName(e = null) {
+    if (e) {
+      e.preventDefault();
+    }
     this.props.changeName({
       name: this.state.editingValue,
       id: this.props.data.id
     });
-    this.unFocus();
-  }
-  unFocus() {
     this.setState({ editing: "" });
   }
 
@@ -68,7 +66,7 @@ class Player extends Component {
                 name={id}
                 onChange={this.setEditingValue}
                 value={this.state.editingValue}
-                onBlur={this.unFocus}
+                onBlur={this.changeName}
               />
             </form>
           ) : (

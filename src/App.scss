@@ -35,17 +35,26 @@ html {
     &-name {
       color: white;
       margin-right: auto;
-      margin-left: 20px;
+      margin-left: 16px;
       font-size: 20px;
       font-weight: 300;
       display: flex;
       align-items: center;
     }
   }
+
+  &__home,
+  &__offline {
+    display: flex;
+    align-items: center;
+    svg {
+      width: 30px;
+      margin-right: 12px;
+    }
+  }
   &__offline {
     svg {
       width: 26px;
-      margin-right: 12px;
     }
   }
 }

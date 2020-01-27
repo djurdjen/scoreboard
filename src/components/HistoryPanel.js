@@ -21,7 +21,6 @@ class ConfigPanel extends Component {
             : "";
           return !isNaN(previous) ? val - previous : val;
         })();
-
         return {
           name: this.props.players.find(p => {
             return p.id === key;

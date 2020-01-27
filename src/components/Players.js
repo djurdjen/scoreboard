@@ -27,6 +27,7 @@ class Players extends Component {
     this.changeScore = this.changeScore.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.startNewRound = this.startNewRound.bind(this);
+    this.disableNextRound = this.disableNextRound.bind(this);
   }
   setValue(e) {
     this.setState({
@@ -94,12 +95,25 @@ class Players extends Component {
     this.props.nextRound(this.state.roundHistory);
   }
 
+  disableNextRound() {
+    return (
+      JSON.stringify(this.props.history[this.props.history.length - 1]) ===
+        JSON.stringify(this.state.roundHistory) ||
+      !Object.values(this.state.roundHistory).find(score => score)
+    );
+  }
+
   render() {
     return (
       <div className="players">
         {this.props.players.length ? (
           <div className="players__round">
-            <button onClick={this.startNewRound}>New round</button>
+            <button
+              disabled={this.disableNextRound()}
+              onClick={this.startNewRound}
+            >
+              New round
+            </button>
             <strong
               className={`players__round-text ${
                 this.state.roundAnimation ? "animate" : ""

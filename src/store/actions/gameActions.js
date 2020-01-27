@@ -19,7 +19,8 @@ export const deletePlayer = id => async (dispatch, getState) => {
     payload: {
       id,
       history: JSON.parse(JSON.stringify(getState())).game.history.map(h => {
-        if (h[id]) {
+        if (id in h) {
+          // prevent skipping if score = 0
           delete h[id]; // also remove player history
         }
         return h;
